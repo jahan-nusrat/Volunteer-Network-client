@@ -40,7 +40,7 @@ const NavBar = () => {
 							</Link>
 						</li>
 						<li className="nav-item admin">
-							<Link to="/admin" className="nav-link">
+							<Link to="/adminPanel" className="nav-link">
 								Admin
 							</Link>
 						</li>
