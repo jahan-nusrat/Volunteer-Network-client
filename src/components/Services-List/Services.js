@@ -4,7 +4,7 @@ import { ServiceComponent } from './style/Service.style';
 
 const Services = (props) => {
 	const { id, title, img, color } = props.info;
-	console.log(props);
+
 	return (
 		<ServiceComponent className="card col-lg-3 p-3">
 			<Link to={`/register/${id}`}>

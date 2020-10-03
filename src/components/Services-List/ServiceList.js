@@ -9,7 +9,7 @@ const ServiceList = () => {
 	useEffect(() => {
 		setServices(fakeData);
 	}, []);
-	console.log(services);
+
 	return (
 		<div className="container">
 			<ServiceRow className="row">

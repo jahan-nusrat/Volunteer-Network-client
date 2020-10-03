@@ -8,7 +8,9 @@ const NavBar = () => {
 		<NavStyle className="container">
 			<div className="row align-items-center">
 				<div className="col-lg-3">
-					<img src={logo} alt="logo" className="img-fluid" />
+					<Link to="/">
+						<img src={logo} alt="logo" className="img-fluid" />
+					</Link>
 				</div>
 				<div className="col-lg">
 					<ul className="nav d-flex justify-content-end align-items-center">
