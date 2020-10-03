@@ -9,7 +9,7 @@ export const MainComponent = styled.main`
 			position: absolute;
 			top: 0;
 			left: 0;
-			opacity: 0.08;
+			opacity: 0.1;
 			z-index: -3;
 			height: 100%;
 			width: 100%;

@@ -1,13 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/User/Home/Home';
+import Register from './pages/User/Volunteer-Register/Register';
 
 const App = () => {
 	return (
 		<Router>
 			<Switch>
-				<Route path="/">
+				<Route exact path="/">
 					<Home />
+				</Route>
+				<Route path="/register/:id">
+					<Register />
 				</Route>
 			</Switch>
 		</Router>

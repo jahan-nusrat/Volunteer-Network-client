@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 import fakeData from '../../data';
+import Services from './Services';
+import { ServiceRow } from './style/Service.style';
 
 const ServiceList = () => {
-	console.log(fakeData);
+	const [ services, setServices ] = useState([]);
+	useEffect(() => {
+		setServices(fakeData);
+	}, []);
+	console.log(services);
 	return (
-		<div>
-			<h1>I am from service-list</h1>
+		<div className="container">
+			<ServiceRow className="row">
+				{services.map((info) => {
+					return <Services key={info.id} info={info} />;
+				})}
+			</ServiceRow>
 		</div>
 	);
 };
