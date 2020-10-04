@@ -1,7 +1,8 @@
-const { USER_REGISTER } = require('./actions');
+const { USER_REGISTER, LOGIN_USER } = require('./actions');
 
 const initialState = {
-	events : []
+	events   : [],
+	userInfo : {}
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				events : [ ...filterEvent, action.payload ]
+			};
+		case LOGIN_USER:
+			return {
+				...state,
+				userInfo : action.payload
 			};
 		default:
 			return state;

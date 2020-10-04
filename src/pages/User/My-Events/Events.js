@@ -5,8 +5,9 @@ import EventsList from './EventsList';
 
 const Events = () => {
 	const registeredEvents = useSelector((state) => state.events);
+	const loggedInUser = useSelector((state) => state.userInfo);
 	const registeredEventsFilter = registeredEvents.filter((event) => {
-		return event.email === 'njnusrat53@gmail.com';
+		return event.email === loggedInUser.email;
 	});
 	return (
 		<EventBox className="event-box">

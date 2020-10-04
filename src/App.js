@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/Nav/NavBar';
+import PrivateRoute from './components/Private-Route/PrivateRoute';
 import Admin from './pages/Admin/Admin';
 import Home from './pages/User/Home/Home';
 import Login from './pages/User/Login/Login';
@@ -20,9 +21,9 @@ const App = () => {
 				<Route path="/login">
 					<Login />
 				</Route>
-				<Route path="/register/:id">
+				<PrivateRoute path="/register/:id">
 					<Register />
-				</Route>
+				</PrivateRoute>
 				<Route path="/events">
 					<NavBar />
 					<Events />

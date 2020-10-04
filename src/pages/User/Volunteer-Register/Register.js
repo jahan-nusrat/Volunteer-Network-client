@@ -10,15 +10,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const Register = () => {
-	const registration = useSelector((state) => state.events);
+	const loggedInUser = useSelector((state) => state.userInfo);
 	const { id } = useParams();
 	const slug = parseInt(id);
 	const filterId = fakeData.find((info) => info.id === slug);
-	console.log(filterId);
 
 	const [ registerInfo, setRegisterInfo ] = useState({
-		name        : '',
-		email       : '',
+		name        : loggedInUser.displayName,
+		email       : loggedInUser.email,
 		date        : '',
 		description : '',
 		img         : filterId.img,
@@ -63,7 +62,6 @@ const Register = () => {
 									<input
 										type="text"
 										name="name"
-										onChange={handleInput}
 										value={registerInfo.name}
 										className="form-control"
 										placeholder="Full Name"
@@ -73,7 +71,6 @@ const Register = () => {
 									<input
 										type="email"
 										name="email"
-										onChange={handleInput}
 										value={registerInfo.email}
 										className="form-control"
 										placeholder="Username or Email"
