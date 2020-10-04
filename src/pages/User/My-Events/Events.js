@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import fakeData from '../../../data';
 import { EventBox } from './Events.style';
 import EventsList from './EventsList';
 
