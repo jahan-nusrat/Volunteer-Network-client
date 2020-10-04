@@ -21,7 +21,7 @@ const App = () => {
 				<Route path="/login">
 					<Login />
 				</Route>
-				<PrivateRoute path="/register/:id">
+				<PrivateRoute path="/categories/:id">
 					<Register />
 				</PrivateRoute>
 				<Route path="/events">

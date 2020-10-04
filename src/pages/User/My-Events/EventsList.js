@@ -2,18 +2,21 @@ import React from 'react';
 import { EventComponent } from './Events.style';
 
 const EventsList = (props) => {
-	const { title, img, date } = props.event;
+	const { _id, event, img, date } = props.event;
+
 	return (
 		<EventComponent className="col-lg-5 mb-3">
 			<div className="d-flex events">
 				<div className="event-img">
-					<img className="img-fluid" src={img} alt={title} />
+					<img className="img-fluid" src={img} alt={event} />
 				</div>
 				<div className="event-content">
-					<h4>{title}</h4>
+					<h4>{event}</h4>
 					<p>{date}</p>
 				</div>
-				<button className="btn">Cancel</button>
+				<button className="btn" onClick={() => props.deleteEvent(_id)}>
+					Cancel
+				</button>
 			</div>
 		</EventComponent>
 	);

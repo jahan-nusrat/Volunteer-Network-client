@@ -1,30 +1,31 @@
-import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { FormContainer, MainDiv } from './Register.style';
 import logo from '../../../Images/logo.png';
-import fakeData from '../../../data';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { registerUser } from '../../../components/Redux/actions';
+import { useSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const Register = () => {
+	const history = useHistory();
 	const loggedInUser = useSelector((state) => state.userInfo);
 	const { id } = useParams();
-	const slug = parseInt(id);
-	const filterId = fakeData.find((info) => info.id === slug);
-
+	const [ category, setCategory ] = useState({});
 	const [ registerInfo, setRegisterInfo ] = useState({
-		name        : loggedInUser.displayName,
-		email       : loggedInUser.email,
-		date        : '',
 		description : '',
-		img         : filterId.img,
-		title       : filterId.title
+		date        : new Date()
 	});
 
-	const dispatch = useDispatch();
+	useEffect(
+		() => {
+			fetch(`http://localhost:5005/categories/${id}`).then((res) => res.json()).then((result) => {
+				let { title, img } = result;
+				setCategory({ title, img });
+			});
+		},
+		[ id ]
+	);
 
 	const handleInput = (e) => {
 		setRegisterInfo({
@@ -35,18 +36,25 @@ const Register = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		dispatch(
-			registerUser(
-				registerInfo.name,
-				registerInfo.email,
-				registerInfo.date,
-				registerInfo.description,
-				filterId.img,
-				filterId.title
-			)
-		);
+		let postRegister = {
+			name        : loggedInUser.displayName,
+			email       : loggedInUser.email,
+			event       : category.title,
+			img         : category.img,
+			description : registerInfo.description,
+			date        : registerInfo.date
+		};
+		fetch('http://localhost:5005/register', {
+			method  : 'POST',
+			headers : { 'Content-Type': 'application/json' },
+			body    : JSON.stringify(postRegister)
+		}).then((result) => {
+			console.log(result);
+		});
+		history.push('/events');
 		toast.success('REGISTERED SUCCESSFULLY');
 	};
+
 	return (
 		<MainDiv>
 			<FormContainer className="container">
@@ -62,7 +70,7 @@ const Register = () => {
 									<input
 										type="text"
 										name="name"
-										value={registerInfo.name}
+										value={loggedInUser.displayName}
 										className="form-control"
 										placeholder="Full Name"
 									/>
@@ -71,7 +79,7 @@ const Register = () => {
 									<input
 										type="email"
 										name="email"
-										value={registerInfo.email}
+										value={loggedInUser.email}
 										className="form-control"
 										placeholder="Username or Email"
 									/>
@@ -99,7 +107,7 @@ const Register = () => {
 									/>
 								</div>
 								<div className="form-group">
-									<input type="text" name="title" className="form-control" value={filterId.title} />
+									<input type="text" name="title" className="form-control" value={category.title} />
 								</div>
 								<p id="confirmError">{''}</p>
 								<button type="submit" className="btn btn-submit">

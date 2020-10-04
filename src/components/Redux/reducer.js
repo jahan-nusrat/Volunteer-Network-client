@@ -6,8 +6,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-	console.log(state);
-	console.log(action);
 	switch (action.type) {
 		case USER_REGISTER:
 			let filterEvent = [ ...state.events ].filter((event) => {
