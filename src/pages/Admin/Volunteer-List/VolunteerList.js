@@ -10,6 +10,8 @@ import Paper from '@material-ui/core/Paper';
 import { useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import Loading from '../../../components/Loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 let styles = {
 	height    : '100vh',
@@ -48,6 +50,7 @@ const VolunteerList = () => {
 			.then((data) => {
 				if (data) {
 					const remaining = volunteers.filter((event) => event._id !== id);
+					toast.info('Delete Register Person Successfully');
 					setVolunteers(remaining);
 				}
 			});
@@ -102,6 +105,17 @@ const VolunteerList = () => {
 										<FaTrashAlt
 											onClick={() => deleteEvent(event._id)}
 											style={{ fontSize: '1.2rem', color: 'DD5145', cursor: 'pointer' }}
+										/>
+										<ToastContainer
+											position="top-center"
+											autoClose={2000}
+											hideProgressBar={false}
+											newestOnTop={false}
+											closeOnClick
+											rtl={false}
+											pauseOnFocusLoss
+											draggable
+											pauseOnHover
 										/>
 									</TableCell>
 								</TableRow>

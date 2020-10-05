@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import Loading from '../../../components/Loading/Loading';
 import { EventBox } from './Events.style';
 import EventsList from './EventsList';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 let styles = {
 	height    : '500px',
@@ -41,7 +43,9 @@ const Events = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data) {
+					toast.success('Event is Deleted');
 					const remaining = myEvents.filter((event) => event._id !== id);
+
 					setMyEvents(remaining);
 				}
 			});
@@ -65,6 +69,17 @@ const Events = () => {
 							{myEvents.map((event) => {
 								return <EventsList key={event._id} event={event} deleteEvent={deleteEvent} />;
 							})}
+							<ToastContainer
+								position="top-center"
+								autoClose={2000}
+								hideProgressBar={false}
+								newestOnTop={false}
+								closeOnClick
+								rtl={false}
+								pauseOnFocusLoss
+								draggable
+								pauseOnHover
+							/>
 						</div>
 					)}
 				</div>

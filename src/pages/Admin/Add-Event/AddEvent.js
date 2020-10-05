@@ -36,6 +36,7 @@ const AddEvent = () => {
 			headers : { 'Content-Type': 'application/json' },
 			body    : JSON.stringify(addEvent)
 		}).then((result) => {
+			toast.success('NEW EVENT ADDED SUCCESSFULLY');
 			console.log(result);
 		});
 	};
