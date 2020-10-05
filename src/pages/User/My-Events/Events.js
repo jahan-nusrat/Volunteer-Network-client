@@ -42,11 +42,20 @@ const Events = () => {
 	return (
 		<EventBox className="event-box">
 			<div className="container">
-				<div className="row justify-content-center">
-					{myEvents.map((event) => {
-						return <EventsList key={event._id} event={event} deleteEvent={deleteEvent} />;
-					})}
-				</div>
+				{!loggedInUser.email ? (
+					<div
+						className="not-register mt-5 py-5"
+						style={{ width: '700px', margin: 'auto', textAlign: 'center' }}
+					>
+						<h1>You are not logged in yet. First Login then Register for a event</h1>
+					</div>
+				) : (
+					<div className="row justify-content-center">
+						{myEvents.map((event) => {
+							return <EventsList key={event._id} event={event} deleteEvent={deleteEvent} />;
+						})}
+					</div>
+				)}
 			</div>
 		</EventBox>
 	);

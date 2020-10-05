@@ -1,9 +1,32 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import logo from '../../Images/logo.png';
 import { NavStyle } from './Nav.style';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import firebaseConfig from '../../firebase.config';
+import { signedOutUser } from '../Redux/actions';
 
 const NavBar = () => {
+	if (!firebase.apps.length) {
+		firebase.initializeApp(firebaseConfig);
+	}
+	const loginInfo = useSelector((state) => state.userInfo);
+	const dispatch = useDispatch();
+
+	const signedOut = () => {
+		firebase
+			.auth()
+			.signOut()
+			.then(function (res) {
+				dispatch(signedOutUser());
+			})
+			.catch(function (error) {
+				console.log(error.message);
+			});
+	};
+
 	return (
 		<NavStyle className="container">
 			<div className="row align-items-center">
@@ -35,9 +58,15 @@ const NavBar = () => {
 							</Link>
 						</li>
 						<li className="nav-item register">
-							<Link to="/login" className="nav-link">
-								Login
-							</Link>
+							{loginInfo.email ? (
+								<Link to="/" className="nav-link" onClick={signedOut}>
+									{loginInfo.displayName}
+								</Link>
+							) : (
+								<Link to="/login" className="nav-link">
+									Login
+								</Link>
+							)}
 						</li>
 						<li className="nav-item admin">
 							<Link to="/adminPanel" className="nav-link">

@@ -1,5 +1,6 @@
 export const USER_REGISTER = 'USER_REGISTER';
 export const LOGIN_USER = 'LOGIN_USER';
+export const SIGNOUT_USER = 'SIGNOUT_USER';
 
 export const registerUser = (name, email, date, description, img, title) => {
 	return {
@@ -12,5 +13,11 @@ export const loggedInUser = (info) => {
 	return {
 		type    : LOGIN_USER,
 		payload : info
+	};
+};
+
+export const signedOutUser = () => {
+	return {
+		type : SIGNOUT_USER
 	};
 };

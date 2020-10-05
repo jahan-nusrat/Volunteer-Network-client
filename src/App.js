@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import NavBar from './components/Nav/NavBar';
+import NotFound from './components/NotFound/NotFound';
 import PrivateRoute from './components/Private-Route/PrivateRoute';
 import Admin from './pages/Admin/Admin';
 import Home from './pages/User/Home/Home';
@@ -30,6 +31,9 @@ const App = () => {
 				</Route>
 				<Route path="/adminPanel">
 					<Admin />
+				</Route>
+				<Route path="*">
+					<NotFound />
 				</Route>
 			</Switch>
 		</Router>

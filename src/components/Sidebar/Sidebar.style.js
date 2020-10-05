@@ -26,6 +26,9 @@ export const SideMenuComponent = styled.div`
 			color: #111111;
 			display: block;
 			margin-bottom: 0.8rem;
+			&:focus {
+				box-shadow: 0 0 0 0 transparent;
+			}
 			.icon {
 				font-size: 1.2rem;
 				margin-right: 0.5rem;

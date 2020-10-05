@@ -1,4 +1,4 @@
-const { USER_REGISTER, LOGIN_USER } = require('./actions');
+const { USER_REGISTER, LOGIN_USER, SIGNOUT_USER } = require('./actions');
 
 const initialState = {
 	events   : [],
@@ -19,6 +19,11 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				userInfo : action.payload
+			};
+		case SIGNOUT_USER:
+			return {
+				...state,
+				userInfo : {}
 			};
 		default:
 			return state;

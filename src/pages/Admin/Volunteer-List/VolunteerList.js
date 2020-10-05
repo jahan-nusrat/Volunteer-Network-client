@@ -22,7 +22,6 @@ const useStyles = makeStyles({
 const VolunteerList = () => {
 	const classes = useStyles();
 	const [ volunteers, setVolunteers ] = useState([]);
-	console.log(volunteers);
 
 	useEffect(() => {
 		fetch('http://localhost:5005/all-events').then((res) => res.json()).then((data) => {
@@ -47,54 +46,59 @@ const VolunteerList = () => {
 	};
 
 	return (
-		<TableContainer
-			component={Paper}
-			style={{
-				backgroundColor : 'transparent',
-				marginTop       : '4rem',
-				borderRadius    : '0px',
-				boxShadow       : '0 0 0 0 transparent'
-			}}
-		>
-			<Table className={classes.table} aria-label="simple table">
-				<TableHead>
-					<TableRow>
-						<TableCell className={classes.head}>NAME</TableCell>
-						<TableCell align="left" className={classes.head}>
-							EMAIL ID
-						</TableCell>
-						<TableCell align="left" className={classes.head}>
-							REGISTER DATE
-						</TableCell>
-						<TableCell align="left" className={classes.head}>
-							VOLUNTEER LIST
-						</TableCell>
-						<TableCell align="left" className={classes.head}>
-							ACTION
-						</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{volunteers.map((event) => (
-						<TableRow key={event._id}>
-							<TableCell component="th" scope="row">
-								{event.name}
+		<div>
+			<div className="volunteer-title pt-3" style={{ textTransform: 'uppercase' }}>
+				<h3>Volunteer Register List</h3>
+			</div>
+			<hr />
+			<TableContainer
+				component={Paper}
+				style={{
+					backgroundColor : 'transparent',
+					marginTop       : '3rem',
+					borderRadius    : '0px',
+					boxShadow       : '0 0 0 0 transparent'
+				}}
+			>
+				<Table className={classes.table} aria-label="simple table">
+					<TableHead>
+						<TableRow>
+							<TableCell className={classes.head}>NAME</TableCell>
+							<TableCell align="left" className={classes.head}>
+								EMAIL ID
 							</TableCell>
-							<TableCell align="left">{event.email}</TableCell>
-							<TableCell align="left">{event.date}</TableCell>
-							<TableCell align="left">{event.event}</TableCell>
-							<TableCell align="center">
-							
-								<FaTrashAlt
-									onClick={() => deleteEvent(event._id)}
-									style={{ fontSize: '1.2rem', color: 'DD5145', cursor: 'pointer' }}
-								/>
+							<TableCell align="left" className={classes.head}>
+								REGISTER DATE
+							</TableCell>
+							<TableCell align="left" className={classes.head}>
+								VOLUNTEER LIST
+							</TableCell>
+							<TableCell align="left" className={classes.head}>
+								ACTION
 							</TableCell>
 						</TableRow>
-					))}
-				</TableBody>
-			</Table>
-		</TableContainer>
+					</TableHead>
+					<TableBody>
+						{volunteers.map((event) => (
+							<TableRow key={event._id}>
+								<TableCell component="th" scope="row">
+									{event.name}
+								</TableCell>
+								<TableCell align="left">{event.email}</TableCell>
+								<TableCell align="left">{event.date}</TableCell>
+								<TableCell align="left">{event.event}</TableCell>
+								<TableCell align="center">
+									<FaTrashAlt
+										onClick={() => deleteEvent(event._id)}
+										style={{ fontSize: '1.2rem', color: 'DD5145', cursor: 'pointer' }}
+									/>
+								</TableCell>
+							</TableRow>
+						))}
+					</TableBody>
+				</Table>
+			</TableContainer>
+		</div>
 	);
 };
 

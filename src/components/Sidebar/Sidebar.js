@@ -4,18 +4,26 @@ import { Link } from 'react-router-dom';
 import { SideMenuComponent } from './Sidebar.style';
 import logo from '../../Images/logo.png';
 
-const Sidebar = () => {
+const Sidebar = (props) => {
 	return (
 		<SideMenuComponent>
-			<img src={logo} className="img-fluid" alt="logo" />
+			<Link to="/">
+				<img src={logo} className="img-fluid" alt="logo" />
+			</Link>
 
 			<div className="sidenav">
-				<Link to="/adminPanel/volunteerList" className="menu-link">
+				<button
+					className={`menu-link btn ${!props.showItem && 'text-primary'}`}
+					onClick={() => props.setShowItem(false)}
+				>
 					<FaUserFriends className="icon" /> Volunteer Register List
-				</Link>
-				<Link to="/adminPanel/addEvents" className="menu-link">
+				</button>
+				<button
+					className={`menu-link btn ${props.showItem && 'text-primary'}`}
+					onClick={() => props.setShowItem(true)}
+				>
 					<FaPlus className="icon" /> Add Events
-				</Link>
+				</button>
 			</div>
 		</SideMenuComponent>
 	);
