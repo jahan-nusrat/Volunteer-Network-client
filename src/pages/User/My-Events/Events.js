@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import Loading from '../../../components/Loading/Loading';
 import { EventBox } from './Events.style';
 import EventsList from './EventsList';
 
+let styles = {
+	height    : '500px',
+	marginTop : '5rem'
+};
+
 const Events = () => {
+	const [ isLoading, setIsLoading ] = useState(true);
 	const loggedInUser = useSelector((state) => state.userInfo);
 	const [ myEvents, setMyEvents ] = useState([]);
 
@@ -17,6 +24,7 @@ const Events = () => {
 			})
 				.then((response) => response.json())
 				.then((result) => {
+					setIsLoading(false);
 					setMyEvents(result);
 				});
 		},
@@ -41,22 +49,26 @@ const Events = () => {
 
 	return (
 		<EventBox className="event-box">
-			<div className="container">
-				{!loggedInUser.email ? (
-					<div
-						className="not-register mt-5 py-5"
-						style={{ width: '700px', margin: 'auto', textAlign: 'center' }}
-					>
-						<h1>You are not logged in yet. First Login then Register for a event</h1>
-					</div>
-				) : (
-					<div className="row justify-content-center">
-						{myEvents.map((event) => {
-							return <EventsList key={event._id} event={event} deleteEvent={deleteEvent} />;
-						})}
-					</div>
-				)}
-			</div>
+			{isLoading ? (
+				<Loading styles={styles} />
+			) : (
+				<div className="container">
+					{!loggedInUser.email ? (
+						<div
+							className="not-register mt-5 py-5"
+							style={{ width: '700px', margin: 'auto', textAlign: 'center' }}
+						>
+							<h1>You are not logged in yet. First Login then Register for a event</h1>
+						</div>
+					) : (
+						<div className="row justify-content-center">
+							{myEvents.map((event) => {
+								return <EventsList key={event._id} event={event} deleteEvent={deleteEvent} />;
+							})}
+						</div>
+					)}
+				</div>
+			)}
 		</EventBox>
 	);
 };

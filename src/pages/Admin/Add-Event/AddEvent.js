@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FormContainer } from './Event.style';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const AddEvent = () => {
 	const colors = [ '#FFBD3E', '#FF7044', '#3F90FC', '#421FCF', '#DB5043' ];
@@ -36,7 +38,6 @@ const AddEvent = () => {
 		}).then((result) => {
 			console.log(result);
 		});
-		history.push('/');
 	};
 
 	return (
@@ -83,6 +84,17 @@ const AddEvent = () => {
 					<input type="file" name="img" className="banner" />
 				</div>
 				<button className="btn btn-primary">Submit</button>
+				<ToastContainer
+					position="top-center"
+					autoClose={2000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+				/>
 			</form>
 		</FormContainer>
 	);
