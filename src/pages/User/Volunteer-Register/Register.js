@@ -21,7 +21,7 @@ const Register = () => {
 	const [ category, setCategory ] = useState({});
 	const [ registerInfo, setRegisterInfo ] = useState({
 		description : '',
-		date        : new Date()
+		date        : new Date().toDateString()
 	});
 
 	useEffect(

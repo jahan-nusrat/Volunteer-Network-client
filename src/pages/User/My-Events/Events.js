@@ -48,6 +48,9 @@ const Events = () => {
 
 					setMyEvents(remaining);
 				}
+			})
+			.catch((err) => {
+				toast.error(err);
 			});
 	};
 

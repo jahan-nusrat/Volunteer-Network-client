@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { FormContainer } from './Event.style';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
@@ -27,18 +26,20 @@ const AddEvent = () => {
 		});
 	};
 
-	const history = useHistory();
-
 	const handleForm = (e) => {
 		e.preventDefault();
 		fetch('https://pure-plateau-94061.herokuapp.com/addCategories', {
 			method  : 'POST',
 			headers : { 'Content-Type': 'application/json' },
 			body    : JSON.stringify(addEvent)
-		}).then((result) => {
-			toast.success('NEW EVENT ADDED SUCCESSFULLY');
-			console.log(result);
-		});
+		})
+			.then((result) => {
+				toast.success('NEW EVENT ADDED SUCCESSFULLY');
+				console.log(result);
+			})
+			.catch((err) => {
+				toast.error(err);
+			});
 	};
 
 	return (

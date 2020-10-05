@@ -53,6 +53,9 @@ const VolunteerList = () => {
 					toast.info('Delete Register Person Successfully');
 					setVolunteers(remaining);
 				}
+			})
+			.catch((err) => {
+				toast.error(err);
 			});
 	};
 
