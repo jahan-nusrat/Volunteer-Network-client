@@ -24,13 +24,13 @@ const VolunteerList = () => {
 	const [ volunteers, setVolunteers ] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:5005/all-events').then((res) => res.json()).then((data) => {
+		fetch('https://pure-plateau-94061.herokuapp.com/all-events').then((res) => res.json()).then((data) => {
 			setVolunteers(data);
 		});
 	}, []);
 
 	const deleteEvent = (id) => {
-		fetch(`http://localhost:5005/delete/${id}`, {
+		fetch(`https://pure-plateau-94061.herokuapp.com/delete/${id}`, {
 			method  : 'DELETE',
 			headers : {
 				'Content-Type' : 'application/json'

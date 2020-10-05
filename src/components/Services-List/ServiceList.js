@@ -7,7 +7,7 @@ const ServiceList = () => {
 	const [ services, setServices ] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:5005/categories').then((res) => res.json()).then((result) => {
+		fetch('https://pure-plateau-94061.herokuapp.com/categories').then((res) => res.json()).then((result) => {
 			setServices(result);
 		});
 	}, []);

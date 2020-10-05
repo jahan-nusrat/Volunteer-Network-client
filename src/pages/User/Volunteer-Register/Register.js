@@ -19,10 +19,12 @@ const Register = () => {
 
 	useEffect(
 		() => {
-			fetch(`http://localhost:5005/categories/${id}`).then((res) => res.json()).then((result) => {
-				let { title, img } = result;
-				setCategory({ title, img });
-			});
+			fetch(`https://pure-plateau-94061.herokuapp.com/categories/${id}`)
+				.then((res) => res.json())
+				.then((result) => {
+					let { title, img } = result;
+					setCategory({ title, img });
+				});
 		},
 		[ id ]
 	);
@@ -44,7 +46,7 @@ const Register = () => {
 			description : registerInfo.description,
 			date        : registerInfo.date
 		};
-		fetch('http://localhost:5005/register', {
+		fetch('https://pure-plateau-94061.herokuapp.com/register', {
 			method  : 'POST',
 			headers : { 'Content-Type': 'application/json' },
 			body    : JSON.stringify(postRegister)

@@ -29,7 +29,7 @@ const AddEvent = () => {
 
 	const handleForm = (e) => {
 		e.preventDefault();
-		fetch('http://localhost:5005/addCategories', {
+		fetch('https://pure-plateau-94061.herokuapp.com/addCategories', {
 			method  : 'POST',
 			headers : { 'Content-Type': 'application/json' },
 			body    : JSON.stringify(addEvent)

@@ -9,7 +9,7 @@ const Events = () => {
 
 	useEffect(
 		() => {
-			fetch(`http://localhost:5005/my-events/${loggedInUser.email}`, {
+			fetch(`https://pure-plateau-94061.herokuapp.com/my-events/${loggedInUser.email}`, {
 				method  : 'GET',
 				headers : {
 					'Content-Type' : 'application/json'
@@ -24,7 +24,7 @@ const Events = () => {
 	);
 
 	const deleteEvent = (id) => {
-		fetch(`http://localhost:5005/delete/${id}`, {
+		fetch(`https://pure-plateau-94061.herokuapp.com/delete/${id}`, {
 			method  : 'DELETE',
 			headers : {
 				'Content-Type' : 'application/json'
